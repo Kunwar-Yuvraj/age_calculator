@@ -5,7 +5,7 @@ Owner's site => https://KunwarYuvraj.herokuapp.com
 
 *** If you are copying this, Please understand logic first, Then you can customize it ;) ***
 
-Source code is uploaded on my github :)
+## If there is any error or advice regarding this code, consider contacting me ! ##
 
 """
 
@@ -44,6 +44,9 @@ def age_calc(user_year, user_month, user_day):
 
 	if user_age_year < 0:
 		message = f'\nHOLD UP..\nYou are not born yet !\nWhat are you doing here ?'
+		return message
+	elif user_age_year > 117:
+		message = f'\nYOU ARE NOT HUMAN !\nANYWAYS You are {user_age_year} years, {abs(user_age_month)} months and {user_age_day} days old !\n\nFUN FACT\nYou have spended a total of {total_seconds} seconds, {total_seconds/60} minutes and {total_seconds/(60*60)} hours !'
 		return message
 	else:
 		message = f'\nYou are {user_age_year} years, {abs(user_age_month)} months and {user_age_day} days old !\n\nFUN FACT\nYou have spended a total of {total_seconds} seconds, {total_seconds/60} minutes and {total_seconds/(60*60)} hours !'
