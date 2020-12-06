@@ -9,51 +9,33 @@ Owner's site => https://KunwarYuvraj.herokuapp.com
 
 """
 
-import datetime as dt 
+import datetime
+def cal():
+    dob = datetime.datetime(day=int(input("DAY: ")), month=int(input("MONTH: ")), year=int(input("YEAR: ")))
+    #data
+    weekdayname = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    currtime = datetime.datetime.now() # current_time is the time when program is running
+    days = (currtime.date() - dob.date()).days
+    weeks = days // 4
+    extra_days_after_weeks = days % 4
+    months= weeks // 4
+    extra_days_after_months= weeks%4
+    years = currtime.year - dob.year
+    hours = (days * 24) + currtime.time().hour
+    print("\n\n You were born on:  ",weekdayname[dob.weekday()])
+    print("Your age is now:\n -->", hours,"hours\n -->", days,"days\n -->", weeks,"weeks", end=" ")
+    if extra_days_after_weeks !=0:
+        print("+", extra_days_after_weeks,"day/s", end=" ")
 
-def age_calc(user_year, user_month, user_day):
-	if user_year % 4 == 0:
-		if user_year % 100 == 0:
-			if user_year % 400 == 0:
-				month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-			else:
-				month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-		else:
-			month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-	else:
-		month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    print("\n-->", months, "months", end=" " )
 
-	user_dob = dt.datetime(user_year, user_month, user_day)
-	current_year = dt.datetime.now().year
-	current_month = dt.datetime.today().month
-	current_day = dt.datetime.today().day
+    if extra_days_after_months != 0:
+        print("+", extra_days_after_months, "day/s", end=" ")
 
-	if user_day > current_day: 
-		current_month -= 1
-		current_day += month[user_month-1] 
+    print("\n-->", years, "years\n\n")
 
-	if user_month > current_month:
-		current_year -= 1
-		current_month += 12
+print("Welcome to DOB calci")
+print("Enter your DOB")
 
-	user_age_year = current_year - user_year 
-	user_age_month = current_month - user_month
-	user_age_day = current_day - user_day
-
-	total_seconds = user_age_year*31536000 + user_age_month*2628002.88 + user_age_day*86400
-
-	if user_age_year < 0:
-		message = f'\nHOLD UP..\nYou are not born yet !\nWhat are you doing here ?'
-		return message
-	elif user_age_year > 117:
-		message = f'\nYOU ARE NOT HUMAN !\nANYWAYS You are {user_age_year} years, {abs(user_age_month)} months and {user_age_day} days old !\n\nFUN FACT\nYou have spended a total of {total_seconds} seconds, {total_seconds/60} minutes and {total_seconds/(60*60)} hours !'
-		return message
-	else:
-		message = f'\nYou are {user_age_year} years, {abs(user_age_month)} months and {user_age_day} days old !\n\nFUN FACT\nYou have spended a total of {total_seconds} seconds, {total_seconds/60} minutes and {total_seconds/(60*60)} hours !'
-		return message
-
-user_year = int(input("Enter year: "))
-user_month = int(input('Enter month: '))
-user_day = int(input('Enter day: '))
-
-print(age_calc(user_year, user_month, user_day))
+for i in range(0,10):
+    cal()
